@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    if (User.IsInRole("Admin"))
+    {
+        <br /><br /><br />
+        <span>@Html.ActionLink("Manage Roles", "Index", "ManageRoles", new { area = "Admin" }, new { @class = "btn btn-danger" })</span>
+        <span>@Html.ActionLink("Manage Users", "Index", "ManageUsers", new { area = "Admin" }, new { @class = "btn btn-warning" })</span>
+    }
+    else if (User.IsInRole("TrainingStaff"))
+    {
+        <br /><br /><br />
+        <span>@Html.ActionLink("Manage Trainees", "Index", "ManageTrainees", new { area = "TrainingStaff" }, new { @class = "btn btn-success" })</span>
+        <span>@Html.ActionLink("Manage Trainers", "Index", "ManageTrainers", new { area = "TrainingStaff" }, new { @class = "btn btn-info" })</span>
+        <span>@Html.ActionLink("Manage Category", "Index", "ManageCategories", new { area = "TrainingStaff" }, new { @class = "btn btn-danger" })</span>
+        <span>@Html.ActionLink("Manage Course", "Index", "ManageCourses", new { area = "TrainingStaff" }, new { @class = "btn btn-warning" })</span>
+        <span>@Html.ActionLink("Manage Classes", "Index", "ManageClasses", new { area = "TrainingStaff" }, new { @class = "btn btn-primary" })</span>
+    }
+    else if (User.IsInRole("Trainee"))
+    {
+        <br /><br /><br />
+        <span>@Html.ActionLink("View Class", "Index", "ViewClasses", new { area = "Trainee" }, new { @class = "btn btn-danger" })</span>
+        <span>@Html.ActionLink("View Profile", "Index", "ViewProfile", new { area = "Trainee" }, new { @class = "btn btn-warning" })</span>
+    }
+    else if (User.IsInRole("Trainer"))
+    {
+        <br /><br /><br />
+        <span>@Html.ActionLink("View Class", "Index", "ViewClasses", new { area = "Trainer" }, new { @class = "btn btn-danger" })</span>
+        <span>@Html.ActionLink("View Profile", "Index", "ViewProfile", new { area = "Trainer" }, new { @class = "btn btn-warning" })</span>
+    }
+}
